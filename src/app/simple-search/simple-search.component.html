@@ -1,4 +1,15 @@
-<input type="text" placeholder="Enter any text..." (input)="onTextChange($event)">
-<ng-container *ngIf="searchResults.length">
-    
-</ng-container>
+<h2>Simple Search</h2>
+<p>A simple search is executed with an input property to accept the value. The value is then trimmed and filtered if
+    matches thus listing the filtered items. If the value is empty, shows the entire list. </p>
+<div>
+    <input type="text" placeholder="Enter text..." (input)="onTextChange($event)">
+</div>
+@if (results.length) {
+@for (result of results; track $index) {
+<div>{{result}}</div>
+}
+} @else if (allData.length) {
+@for (data of allData; track $index) {
+<div>{{data}}</div>
+}
+}

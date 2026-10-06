@@ -1,0 +1,101 @@
+<h2>Reactive form example</h2>
+
+<p>The below example is reactive form containing <strong>nested form group and a form array</strong></p>
+
+<p><strong>address</strong> field is a form group i.e, address line 1, address line 2, street, city, state and pincode</p>
+
+<p><strong>experience</strong> is a form array i.e, company name, currently working, start date and end date</p>
+
+<form [formGroup]="form">
+    <div>
+        <label for="firstName">First Name</label>
+        <input type="text" formControlName="firstName" placeholder="Enter First Name" required/>
+    </div>
+
+    <div>
+        <label for="lastName">Last Name</label>
+        <input type="text" formControlName="lastName" placeholder="Enter Last Name" required/>
+    </div>
+
+    <div>
+        <label for="email">Email</label>
+        <input type="email" formControlName="emailId" placeholder="Enter Email Id" required/>
+    </div>
+
+    <div>
+        <label for="contactNo">Contact Number</label>
+        <input type="number" formControlName="contactNo" placeholder="Enter Contact Number" required/>
+    </div>
+
+    <div formGroupName="address">
+        <div>
+            <label for="addressLine1">Address Line 1</label>
+            <input type="text" formControlName="addressLine1" placeholder="Address Line 1" required/>
+        </div>
+
+        <div>
+            <label for="addressLine2">Address Line 2</label>
+            <input type="text" formControlName="addressLine2" placeholder="Address Line 2" required/>
+        </div>
+
+        <div>
+            <label for="street">Street</label>
+            <input type="text" formControlName="street" placeholder="Enter Street" required/>
+        </div>
+
+        <div>
+            <label for="city">City</label>
+            <input type="text" formControlName="city" placeholder="Enter City" required/>
+        </div>
+
+        <div>
+            <label for="state">State</label>
+            <input type="text" formControlName="state" placeholder="Enter State" required/>
+        </div>
+
+        <div>
+            <label for="pincode">Pincode</label>
+            <input type="number" formControlName="pincode" placeholder="Enter Pincode" required/>
+        </div>
+
+    </div>
+
+    <div formArrayName="experience">
+        @for (exp of experience().controls; track exp; let index = $index) {
+            <div [formGroupName]="index">
+            <div>
+                <label for="companyName">Company Name</label>
+                <input type="text" formControlName="companyName" placeholder="Enter Company Name"/>
+            </div>
+
+            <div>
+                <label for="currentlyWorking">Currently Working Here</label>
+                <input type="checkbox" formControlName="currentlyWorking" (change)="onCurrentlyWorkingChange(index)"/>
+            </div>
+
+            <div >
+                <div>
+                    <label for="startDate">Start Date</label>
+                    <input type="date" formControlName="startDate"/>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <label for="endDate">End Date</label>
+                    <input type="date" formControlName="endDate"/>
+                </div>
+            </div>
+
+            <button (click)="addExperience()">Add</button>
+
+            <button (click)="removeExperience(index)">Remove</button>
+        </div>
+        }
+
+    </div>
+
+    <div>
+        <button type="submit" (click)="onSubmit(form)">Register</button>
+    </div>
+</form>

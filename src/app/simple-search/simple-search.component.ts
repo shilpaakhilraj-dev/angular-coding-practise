@@ -7,16 +7,16 @@ import { Component } from '@angular/core';
 })
 export class SimpleSearchComponent{
 
-  data: string[] = ['angular', 'rxjs', 'html', 'css']
+  public allData: string[] = ['angular', 'rxjs', 'html', 'css']
 
-  searchResults: string[] = [];
+  public results: string[] = [];
 
   onTextChange(event: any) {
-    if (event) {
-      console.log(event)
-      this.searchResults = this.data?.filter((result: string) => result?.includes(event))
+    const newValue = (event?.target as HTMLInputElement)?.value?.toLowerCase();
+    if (newValue!=='') {
+      this.results = this.allData?.filter((result: string) => result?.includes(newValue));
     } else {
-      this.searchResults = [];
+      this.results = [];
     }
   }
 

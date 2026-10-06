@@ -1,3 +1,39 @@
-<h3>A Simple Search Functionality</h3>
+<div class="page">
 
-<app-simple-search></app-simple-search>
+    <div class="page__left">
+        @for (topic of topics;track $index) {
+        <div class="page__left__list" [ngClass]="{'page__left__list--active': topicActive===topic.key}"
+            (click)="selectTopic(topic.key)">
+            {{topic.title | firstLetterUppercase}}
+        </div>
+        }
+    </div>
+
+    <div class="page__right">
+
+        @switch(topicActive) {
+
+        @case ('simple-search') {
+            <app-simple-search></app-simple-search>
+        }
+
+        @case ('rxjs-search') {
+            <app-search-with-rxjs></app-search-with-rxjs>
+        }
+
+        @case ('template-driven') {
+            <app-template-driven-form></app-template-driven-form>
+        }
+
+        @case ('reactive-form') {
+            <app-reactive-form></app-reactive-form>
+        }
+
+        @case ('js-coding') {
+            <app-javascript-coding-questions></app-javascript-coding-questions>
+        }
+
+        }
+    </div>
+
+</div>

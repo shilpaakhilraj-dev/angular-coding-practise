@@ -1,0 +1,16 @@
+<h2>Search using Rxjs</h2>
+<p>An input field of type text is created to accept a value. When user enters the value, the value is stored in a
+    subject, which then before filtering the list, make use of startWith(), debounceTime(), distinctUntilChanged(), and
+    switchMap() operators of Rxjs.</p>
+<p>startWith() operator is used to show all the list even if the user input value is empty.</p>
+<p>debounceTime() operator is used to wait for some time period to make api call or filter the list.</p>
+<p>distinctUntilChanged() operator is used to not to duplicate the api calls or filter the list if the current and
+    previous value are same.</p>
+<p>switchMap() operator is used to cancel api call if current value has changed.</p>
+<input type="text" placeholder="Search" (input)="onSearch($event)" />
+
+<ul>
+    @for (item of (results$ | async); track $index) {
+    <li>{{ item }}</li>
+    }
+</ul>

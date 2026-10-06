@@ -1,0 +1,32 @@
+.page {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 0px);
+
+    &__left {
+        width: 25%;
+        background: #FAFAFA;
+
+        &__list {
+            padding: 1rem;
+            cursor: pointer;
+
+            &--active {
+                background: #7986CB;
+                color: white;
+            }
+        }
+
+        &__list:hover:not(.page__left__list--active) {
+            background: #ECEFF1;
+            color: black;
+        }
+    }
+
+    &__right {
+        width: 75%;
+        margin: 0 0 0 1rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
